@@ -9,11 +9,14 @@ async function getFood() {
     const name = document.querySelector('.name_product');
     const grade = document.querySelector('.nutrition_grades');
     const cal = document.querySelector('.result_container .cal');
-    const image = document.querySelector('.result_container img')
+    const imgGrades = document.querySelector('.img_grades');
+    const imgNova = document.querySelector('.img_nova');
 
     name.innerHTML = '';
     grade.innerHTML = '';
     cal.innerHTML = '';
+    imgGrades.innerHTML ='';
+    imgNova.innerHTML ='';
     
     let rep = await fetch(`https://world.openfoodfacts.net/api/v2/product/${barcode}?fields=product_name,nutriscore_data,nutriments,nutrition_grades
     `);
@@ -27,12 +30,16 @@ async function getFood() {
         name.innerHTML = '';
         grade.innerHTML = '';
         cal.innerHTML = '';
+        imgGrades.innerHTML ='';
+        imgNova.innerHTML ='';
         return;
     } else if (data.code !== barcode) {
         error.style.display ='block';       
         name.innerHTML = '';
         grade.innerHTML = '';
         cal.innerHTML = '';
+        imgGrades.innerHTML ='';
+        imgNova.innerHTML ='';
         return;
     } else {
         error.style.display = 'none';
@@ -45,23 +52,48 @@ async function getFood() {
         switch(data.product.nutrition_grades){
 
             case 'a' :
-                image.src ='images/A.svg';
+                imgGrades.src ='images/A.svg';
                 break;
             case 'b' :
-                image.src ='images/B.svg';
+                imgGrades.src ='images/B.svg';
                 break;
             case 'c' :
-                image.src ='images/C.svg';
+                imgGrades.src ='images/C.svg';
                 break;
             case 'd' :
-                image.src ='images/D.svg';
+                imgGrades.src ='images/D.svg';
                 break;
             case 'e' :
-                image.src ='images/E.svg';
+                imgGrades.src ='images/E.svg';
                 break;
             default :
-                image.src = ''
-        }
+                imgGrades.src = ''
+        };
+        console.log(data.product.nutriments['nova-group_100g']);
+
+        switch(data.product.nutriments['nova-group_100g']){
+    
+            case '1' :
+                console.log("Case 1");
+                imgNova.src ='images/1.png';
+                break;
+            case '2' :
+                console.log("Case 2");
+                imgNova.src ='images/2.png';
+                break;
+            case '3' :
+                console.log("Case 3");
+                
+                break;
+            case '4' :
+                console.log("Case 4");
+                imgNova.src ='images/4.png';
+                break;
+            default :
+                imgNova.src = ''
+        };
+
+        console.log(imgNova.src)
 };
 
 
