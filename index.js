@@ -1,4 +1,5 @@
 const search = document.querySelector('button');
+const error = document.querySelector('.error');
 
 
 async function getFood() {
@@ -15,8 +16,10 @@ async function getFood() {
     
 
     if(data.status === 0){
+        error.style.display ='block';
         return;
     } else {
+        error.style.display = 'none';
         name.innerHTML =  data.product.product_name;
         grade.innerHTML =  `Rang ${data.product.nutrition_grades}`;
         cal.innerHTML = `${data.product.nutriments['energy-kcal_100g']} Kcal pour 100g`;
