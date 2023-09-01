@@ -52,9 +52,11 @@ async function getFood() {
         switch(data.product.nutrition_grades){
 
             case 'a' :
+                console.log("Case a");
                 imgGrades.src ='images/A.svg';
                 break;
             case 'b' :
+                console.log("Case b");
                 imgGrades.src ='images/B.svg';
                 break;
             case 'c' :
@@ -69,31 +71,30 @@ async function getFood() {
             default :
                 imgGrades.src = ''
         };
-        console.log(data.product.nutriments['nova-group_100g']);
 
-        switch(data.product.nutriments['nova-group_100g']){
-    
-            case '1' :
-                console.log("Case 1");
-                imgNova.src ='images/1.png';
-                break;
-            case '2' :
-                console.log("Case 2");
-                imgNova.src ='images/2.png';
-                break;
-            case '3' :
-                console.log("Case 3");
-                
-                break;
-            case '4' :
-                console.log("Case 4");
-                imgNova.src ='images/4.png';
-                break;
-            default :
-                imgNova.src = ''
-        };
+            switch(data.product.nutriments['nova-group']){
 
-        console.log(imgNova.src)
+                case 1 :
+                    console.log("Case a");
+                    imgNova.src ='images/1.png';
+                    break;
+                case 2 :
+                    console.log("Case b");
+                    imgNova.src ='images/2.png';
+                    break;
+                case 3 :
+                    console.log("Case 3");
+                    imgNova.src ='images/3.png';
+                    break;
+                case 4 :
+                    console.log("Case 4");
+                    imgNova.src ='images/4.png';
+                    break;
+                default :
+                    imgNova.src = ''
+            };
+
+      
 };
 
 
@@ -106,3 +107,4 @@ search.addEventListener('click',(e) => {
 
 
 
+//console.log(data.product.nutriments['nova-group_100g']);
