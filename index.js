@@ -11,14 +11,16 @@ async function getFood() {
     const cal = document.querySelector('.result_container .cal');
     const imgGrades = document.querySelector('.img_grades');
     const imgNova = document.querySelector('.img_nova');
+    const imgProduct = document.querySelector('.img_product');
 
     name.innerHTML = '';
     grade.innerHTML = '';
     cal.innerHTML = '';
     imgGrades.innerHTML ='';
     imgNova.innerHTML ='';
+    imgProduct.innerHTML ='';
     
-    let rep = await fetch(`https://world.openfoodfacts.net/api/v2/product/${barcode}?fields=product_name,nutriscore_data,nutriments,nutrition_grades
+    let rep = await fetch(`https://world.openfoodfacts.net/api/v2/product/${barcode}
     `);
     let reponse = await rep.json();
     const data = reponse
@@ -32,6 +34,7 @@ async function getFood() {
         cal.innerHTML = '';
         imgGrades.innerHTML ='';
         imgNova.innerHTML ='';
+        imgProduct.innerHTML ='';
         return;
     } else if (data.code !== barcode) {
         error.style.display ='block';       
@@ -40,12 +43,14 @@ async function getFood() {
         cal.innerHTML = '';
         imgGrades.innerHTML ='';
         imgNova.innerHTML ='';
+        imgProduct.innerHTML ='';
         return;
     } else {
         error.style.display = 'none';
         name.innerHTML =  data.product.product_name;
         grade.innerHTML =  `Rang ${data.product.nutrition_grades}`;
         cal.innerHTML = `${data.product.nutriments['energy-kcal_100g']} Kcal pour 100g`;
+        imgProduct.src = `${data.product.image_thumb_url}`
     }
 
 
