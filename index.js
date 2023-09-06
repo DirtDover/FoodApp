@@ -12,6 +12,7 @@ async function getFood() {
     const imgGrades = document.querySelector('.img_grades');
     const imgNova = document.querySelector('.img_nova');
     const imgProduct = document.querySelector('.img_product');
+    const description = document.querySelector('.description');
 
     name.innerHTML = '';
     grade.innerHTML = '';
@@ -50,7 +51,8 @@ async function getFood() {
         name.innerHTML =  data.product.product_name;
         grade.innerHTML =  `Rang ${data.product.nutrition_grades}`;
         cal.innerHTML = `${data.product.nutriments['energy-kcal_100g']} Kcal pour 100g`;
-        imgProduct.src = `${data.product.image_thumb_url}`
+        imgProduct.src = `${data.product.image_url}`;
+        
     }
 
 
